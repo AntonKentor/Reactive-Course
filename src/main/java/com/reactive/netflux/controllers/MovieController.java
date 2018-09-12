@@ -4,6 +4,7 @@ import com.reactive.netflux.domain.Movie;
 import com.reactive.netflux.domain.MovieEvent;
 import com.reactive.netflux.services.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +23,7 @@ public class MovieController {
         this.movieService = movieService;
     }
 
-    @GetMapping(value = "/{id}/events")
+    @GetMapping(value = "/{id}/events", produces = MediaType.TEXT_EVENT_STREAM_VALUE) // Expects a text-stream.
     Flux<MovieEvent> streamMovieEvents(@PathVariable String id) {
         return movieService.events(id);
     }

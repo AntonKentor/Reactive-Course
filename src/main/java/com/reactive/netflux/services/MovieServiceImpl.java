@@ -22,7 +22,7 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public Flux<MovieEvent> events(String movieId) {
+    public Flux<MovieEvent> events(String movieId) {                            //Runs forever until a subscriber disappears.
         return Flux.<MovieEvent>generate(movieEventSynchronousSink -> {
             movieEventSynchronousSink.next(new MovieEvent(movieId, new Date()));
         }).delayElements(Duration.ofSeconds(1));
