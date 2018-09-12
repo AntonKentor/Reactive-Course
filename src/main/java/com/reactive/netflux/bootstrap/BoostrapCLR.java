@@ -30,16 +30,16 @@ public class BoostrapCLR implements CommandLineRunner {
         movieRepository.deleteAll()
                 .thenMany(
                         Flux.just(
-                "Silence of the Lambdas",
-                "AEon Flux",
-                "Enter the Mono<Void>",
-                "The Fluxxinator",
-                "Back to the future",
-                "Meet the Fluxes",
-                "Lord of the Fluxes")
+                                "Silence of the Lambdas",
+                                "AEon Flux",
+                                "Enter the Mono<Void>",
+                                "The Fluxxinator",
+                                "Back to the future",
+                                "Meet the Fluxes",
+                                "Lord of the Fluxes")
 
-                .map(title -> new Movie(title))
-                .flatMap(movieRepository::save))
+                                .map(title -> new Movie(UUID.randomUUID().toString(), title))
+                                .flatMap(movieRepository::save))
                 .subscribe(null, null, () -> {
                     movieRepository.findAll().subscribe(System.out::println);
                 });
