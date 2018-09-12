@@ -38,7 +38,7 @@ public class BoostrapCLR implements CommandLineRunner {
                 "Meet the Fluxes",
                 "Lord of the Fluxes")
 
-                .map(title -> new Movie(UUID.randomUUID().toString(), title ))
+                .map(title -> new Movie(title))
                 .flatMap(movieRepository::save))
                 .subscribe(null, null, () -> {
                     movieRepository.findAll().subscribe(System.out::println);
