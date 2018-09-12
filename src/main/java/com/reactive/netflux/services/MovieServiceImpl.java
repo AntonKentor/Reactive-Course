@@ -4,12 +4,14 @@ import com.reactive.netflux.domain.Movie;
 import com.reactive.netflux.domain.MovieEvent;
 import com.reactive.netflux.repositories.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.time.Duration;
 import java.util.Date;
 
+@Service
 public class MovieServiceImpl implements MovieService {
 
     private final MovieRepository movieRepository;
